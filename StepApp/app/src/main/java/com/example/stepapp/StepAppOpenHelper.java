@@ -176,6 +176,21 @@ public class StepAppOpenHelper extends SQLiteOpenHelper {
     public static Map<String, Integer> loadStepsByDay(Context context){
         Map<String, Integer> map = new TreeMap<>();
 
+        StepAppOpenHelper databaseHelper = new StepAppOpenHelper(context);
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT day, COUNT(*)  FROM num_steps " +
+                " GROUP BY day ORDER BY  day ASC ", new String []{});
+
+        cursor.moveToFirst();
+        for (int index=0; index < cursor.getCount(); index++){
+            String tmpKey = cursor.getString(0);
+            Integer tmpValue = Integer.parseInt(cursor.getString(1));
+            map.put(tmpKey, tmpValue);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
 
       return map;
     }
