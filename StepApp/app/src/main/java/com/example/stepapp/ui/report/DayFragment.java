@@ -76,7 +76,7 @@ public class DayFragment extends Fragment {
         column.stroke("#1EB980");
 
         column.tooltip()
-                .titleFormat("At hour: {%X}")
+                .titleFormat("At day: {%X}")
                 .format("{%Value}{groupsSeparator: } Steps")
                 .anchor(Anchor.RIGHT_TOP);
 
@@ -88,7 +88,7 @@ public class DayFragment extends Fragment {
         cartesian.yScale().minimum(0);
         cartesian.background().fill("#00000000");
         cartesian.xAxis(0).title("Number of steps");
-        cartesian.yAxis(0).title("Hours");
+        cartesian.yAxis(0).title("Days");
         cartesian.animation(true);
 
         return cartesian;
